@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo-MyList</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <header>
+        <h1>Tasks Management</h1>
+        <input
+          class="new-todo"
+          type="text"
+          placeholder="What needs to be done?"
+        />
+      </header>
+      <section class="main">
+        <!-- input -->
+        <!-- label -->
+        <ul class="todo-list">
+          <li>
+            <div class="view">
+              <input type="checkbox" name="" id="" class="toggle" />
+              <label>Task1 Task1 Task1 Task1</label>
+              <button class="destroy" type="button"></button>
+            </div>
+
+            <input type="text" class="edit" />
+          </li>
+          <li>
+            <div class="view">
+              <input type="checkbox" name="" id="" class="toggle" />
+              <label>Task1 Task1 Task1 Task1</label>
+              <button class="destroy" type="button"></button>
+            </div>
+
+            <input type="text" class="edit" />
+          </li>
+          <li>
+            <div class="view">
+              <input type="checkbox" name="" id="" class="toggle" />
+              <label>Task1 Task1 Task1 Task1</label>
+              <button class="destroy" type="button"></button>
+            </div>
+
+            <input type="text" class="edit" />
+          </li>
+        </ul>
+      </section>
+      <footer class="footer">
+        <span class="todo-count"><strong>2</strong> items left</span>
+        <ul class="filters">
+          <li>
+            <a href="">All</a>
+            <a href="">Active</a>
+            <a href="">Completed</a>
+            <a href="">Clear Completed</a>
+          </li>
+        </ul>
+      </footer>
+    </div>
+    <script src="./js/main.js/"></script>
+  </body>
+</html>

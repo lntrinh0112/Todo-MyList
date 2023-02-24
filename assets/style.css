@@ -1,0 +1,139 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: antiquewhite;
+}
+
+#wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
+}
+
+.new-todo {
+  padding: 16px 16px 16px 60px;
+  border: none;
+  box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
+  width: 100%;
+  font-size: 24px;
+}
+
+header h1 {
+  font-size: 40px;
+  font-weight: 600;
+  color: #b83f45;
+}
+
+/* Main */
+.todo-list {
+  list-style: none;
+}
+
+.todo-list li {
+  box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
+  font-size: 24px;
+  background-color: #fff;
+  display: block;
+  position: relative;
+  border-bottom: 1px solid #ededed;
+}
+
+.todo-list li .toggle {
+  width: 20px;
+  height: 20pxpx;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  border: none;
+  left: 10px;
+  border-radius: 50%;
+}
+
+.todo-list li label {
+  padding: 15px 15px 15px 60px;
+  display: block;
+  font-weight: 400;
+  text-align: start;
+}
+
+.todo-list li .destroy:after {
+  content: "x";
+}
+
+.todo-list li .destroy {
+  /* display: none; */
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 5px;
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+  background: #fff;
+  border: none;
+  font-size: 16px;
+  color: #b83f45;
+  cursor: pointer;
+}
+
+.todo-list li .view {
+  /* display: none; */
+}
+
+.todo-list li .edit {
+  display: none;
+  position: relative;
+  width: 100%;
+  font-size: 24px;
+  line-height: 1.4rem;
+  padding: 6px;
+}
+
+.footer:before {
+  content: " ";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  overflow: hidden;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 20%), 0 8px 0 -3px #f6f6f6,
+    0 9px 1px -3px rgb(0 0 0 / 20%), 0 16px 0 -6px #f6f6f6,
+    0 17px 2px -6px rgb(0 0 0 / 20%);
+}
+
+.footer {
+  padding: 10px 15px;
+  height: 40px;
+  position: relative;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer ul {
+  list-style: none;
+  position: relative;
+}
+
+.footer ul li a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0 5px;
+  border: 1px solid #b83f45;
+}
+
+.footer ul li a:last-child {
+  display: none;
+}

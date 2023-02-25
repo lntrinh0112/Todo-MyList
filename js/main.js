@@ -7,7 +7,7 @@ class App {
     loadApp() {
         this.renderData();
         this.renderUI();
-
+        this.setCountItemLeft();
     }
 
     renderData() {
@@ -15,7 +15,8 @@ class App {
         if (data != null) {
             data.forEach(element => {
                 this.addElementToListView(element.item, element.isCompleted);
-                this.addItemtoData(element.item, (element.isCompleted === true) ? "true" : "false");
+                this.addItemtoData(element.item, (element.isCompleted === true) ? true : false);
+                this.setCountItemLeft();
             });
         }
     }
@@ -50,10 +51,12 @@ class App {
         btnRemove.addEventListener('click', (event) => {
             this.removeItem(event.target.closest('li'));
             event.target.closest('li').remove();
+            this.setCountItemLeft();
         });
         inputCheck.addEventListener('click', (event) => {
             this.changeStateElement(event.target.closest('li'));
             this.changeItemByElement(event.target.closest('li'));
+            this.setCountItemLeft();
         });
         todoItemName.addEventListener('keypress', (event) => {
             if (event.key === 13) {
@@ -73,7 +76,7 @@ class App {
                     this.addItemtoData(valueInput, false);
                     this.saveData();
                     document.getElementById('new-todo').value = '';
-                    // this.setCountItemLeft();
+                    this.setCountItemLeft();
                 }
             }
         });
@@ -97,9 +100,17 @@ class App {
     changeItemByElement(element) {
         let currentIndex = this.getIndexOfElement(element);
         this.ListItems[currentIndex]["checked"] = this.getCurrentStateElement(element);
-        console.log(this.ListItems[currentIndex]);
         this.saveData();
     }
 
+    findItemLeft() {
+        return this.ListItems.filter((element) => {
+            return element["checked"] === false;
+        }, []);
+    }
+
+    setCountItemLeft() {
+        document.querySelector(".todo-count strong").innerHTML = this.findItemLeft().length;
+    }
 }
 const todos = new App();

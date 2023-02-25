@@ -3,13 +3,11 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 html,
 body {
   font-family: "Poppins", sans-serif;
   background-color: antiquewhite;
 }
-
 #wrapper {
   position: relative;
   width: 100%;
@@ -18,7 +16,6 @@ body {
   margin: auto;
   text-align: center;
 }
-
 .new-todo {
   padding: 16px 16px 16px 60px;
   border: none;
@@ -27,20 +24,16 @@ body {
   font-size: 24px;
   outline: none;
 }
-
 header h1 {
   font-size: 40px;
   font-weight: 600;
   color: #b83f45;
 }
-
 /* Main */
-
 .check-all {
   opacity: 0;
   position: absolute;
 }
-
 .check-all + label {
   width: 60px;
   height: 34px;
@@ -51,18 +44,15 @@ header h1 {
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
 }
-
 .check-all + label:before {
   content: "❯";
   font-size: 22px;
   color: #e6e6e6;
   padding: 10px 27px 10px 27px;
 }
-
 .todo-list {
   list-style: none;
 }
-
 .todo-list li {
   box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
   font-size: 24px;
@@ -71,7 +61,6 @@ header h1 {
   position: relative;
   border-bottom: 1px solid #ededed;
 }
-
 .todo-list li .toggle {
   width: 20px;
   height: 20pxpx;
@@ -84,23 +73,15 @@ header h1 {
   left: 10px;
   border-radius: 50%;
 }
-
 .todo-list li label {
   padding: 15px 15px 15px 60px;
   display: block;
   font-weight: 400;
   text-align: start;
 }
-
-/* .todo-list li.active label {
-  text-decoration: line-through;
-  color: darkgray;
-} */
-
 .todo-list li .destroy:after {
   content: "x";
 }
-
 .todo-list li .destroy {
   display: none;
   position: absolute;
@@ -116,15 +97,12 @@ header h1 {
   color: #b83f45;
   cursor: pointer;
 }
-
 .todo-list li:hover .destroy {
   display: block;
 }
-
 .todo-list li .view label {
   border: none;
 }
-
 .todo-list li .edit {
   display: none;
   position: relative;
@@ -133,7 +111,6 @@ header h1 {
   line-height: 1.4rem;
   padding: 6px;
 }
-
 ul li input[type="checkbox"]:checked ~ label {
   color: #cdcdcd;
   text-decoration: line-through;
@@ -142,13 +119,11 @@ ul li input[type="checkbox"]:checked ~ label {
 .todo-list li.hidden {
   display: none;
 }
-
 /* Edit */
 .todo-list li.editing {
   border-bottom: none;
   width: 550px;
 }
-
 .todo-list li.editing .edit {
   display: block;
   width: 504px;
@@ -158,11 +133,9 @@ ul li input[type="checkbox"]:checked ~ label {
   outline: none;
   height: 100%;
 }
-
 .todo-list li.editing .view {
   display: none;
 }
-
 .footer:before {
   content: " ";
   position: absolute;
@@ -175,7 +148,6 @@ ul li input[type="checkbox"]:checked ~ label {
     0 9px 1px -3px rgb(0 0 0 / 20%), 0 16px 0 -6px #f6f6f6,
     0 17px 2px -6px rgb(0 0 0 / 20%);
 }
-
 .footer {
   padding: 10px 15px;
   height: 40px;
@@ -183,31 +155,32 @@ ul li input[type="checkbox"]:checked ~ label {
   background: #fff;
   display: flex;
   justify-content: space-between;
+  transition: ease 1s;
 }
-
 .footer ul {
   list-style: none;
   position: relative;
 }
-
 .footer ul li a {
   text-decoration: none;
   display: inline-block;
   padding: 0 5px;
   border: 1px solid #b83f45;
 }
-
-.footer ul li a.active {
+.footer ul li a.active,
+.footer ul li a:hover {
   background-color: #b83f45;
   color: #f6f6f6;
 }
 
-.footer ul li a:last-child {
-  /* display: none; */
+.footer ul li a:last-child.hidden {
   pointer-events: none;
   opacity: 0.5;
 }
-
+.footer ul li a:last-child:hover {
+  background-color: #e6e6e6;
+  color: #b83f45;
+}
 .footer.hidden {
   display: none;
 }

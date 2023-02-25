@@ -50,7 +50,17 @@ class App {
         btnRemove.addEventListener('click', (event) => {
             this.removeItem(event.target.closest('li'));
             event.target.closest('li').remove();
-        });;
+        });
+        inputCheck.addEventListener('click', (event) => {
+            this.changeStateElement(event.target.closest('li'));
+            this.changeItemByElement(event.target.closest('li'));
+        });
+        todoItemName.addEventListener('keypress', (event) => {
+            if (event.key === 13) {
+                todoItemName.contentEditable = 'false';
+                this.changeItem(event.target.closest('li'));
+            }
+        });
     }
 
     renderUI() {
@@ -63,22 +73,32 @@ class App {
                     this.addItemtoData(valueInput, false);
                     this.saveData();
                     document.getElementById('new-todo').value = '';
+                    // this.setCountItemLeft();
                 }
             }
         });
     }
-
     saveData() {
         localStorage.setItem('todo-list', JSON.stringify(this.ListItems));
     }
-
     removeItem(element) {
         this.ListItems.splice(this.getIndexOfElement(element), 1);
         this.saveData();
     }
     getIndexOfElement(element) {
-        console.log(Array.from(element.closest('ul').children).indexOf(element));
         return Array.from(element.closest('ul').children).indexOf(element);
+    }
+    changeStateElement(element) {
+        return !this.getCurrentStateElement(element);
+    }
+    getCurrentStateElement(element) {
+        return element.querySelector("input[type='checkbox']").checked;
+    }
+    changeItemByElement(element) {
+        let currentIndex = this.getIndexOfElement(element);
+        this.ListItems[currentIndex]["checked"] = this.getCurrentStateElement(element);
+        console.log(this.ListItems[currentIndex]);
+        this.saveData();
     }
 
 }

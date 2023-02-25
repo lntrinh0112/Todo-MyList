@@ -138,6 +138,11 @@ ul li input[type="checkbox"]:checked ~ label {
   color: #cdcdcd;
   text-decoration: line-through;
 }
+
+.todo-list li.hidden {
+  display: none;
+}
+
 /* Edit */
 .todo-list li.editing {
   border-bottom: none;
@@ -201,4 +206,8 @@ ul li input[type="checkbox"]:checked ~ label {
   /* display: none; */
   pointer-events: none;
   opacity: 0.5;
+}
+
+.footer.hidden {
+  display: none;
 }

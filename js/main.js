@@ -3,16 +3,14 @@ class App {
         this.ListItems = [];
         this.loadApp();
     }
-
     loadApp() {
         this.renderData();
         this.renderUI();
         this.setCountItemLeft();
     }
-
     renderData() {
         const data = JSON.parse(localStorage.getItem('todo-list'));
-        if (data != null) {
+        if (data.length != 0) {
             data.forEach(element => {
                 this.addElementToListView(element.item, element.isCompleted);
                 this.addItemtoData(element.item, (element.isCompleted === true) ? true : false);
@@ -20,11 +18,9 @@ class App {
             });
         }
     }
-
     addItemtoData(item, isCompleted) {
         this.ListItems.push({"item": item, "checked": isCompleted});
     }
-
     addElementToListView(item, isCompleted) {
         let todoList = document.querySelector(".todo-list");
         let todoItem = document.createElement('li');
@@ -65,7 +61,6 @@ class App {
             }
         });
     }
-
     renderUI() {
         const input = document.getElementById('new-todo');
         input.addEventListener('keypress', (event) => {
@@ -80,6 +75,40 @@ class App {
                 }
             }
         });
+        const showAll = document.querySelector('.ListItems');
+        showAll.addEventListener('click', (event) => {
+            event.preventDefault();
+            let listElement = document.querySelectorAll('.todo-list li');
+            listElement.forEach((element) => {
+                element.classList.remove("hidden");
+            });
+            showAll.classList.add("active");
+            showLeft.classList.remove("active");
+            showComleted.classList.remove("active");
+        });
+        const showLeft = document.querySelector('.ListItemsLeft');
+        showLeft.addEventListener('click', (event) => {
+            event.preventDefault();
+            let listElement = document.querySelectorAll('.todo-list li');
+            listElement.forEach((element) => {
+                element.querySelector(':checked') ? element.classList.add("hidden") : element.classList.remove("hidden");
+            });
+            showLeft.classList.add("active");
+            showAll.classList.remove("active");
+            showComleted.classList.remove("active");
+        })
+        const showComleted = document.querySelector('.ListItemsCompleted');
+        showComleted.addEventListener('click', (event) => {
+            event.preventDefault();
+            let listElement = document.querySelectorAll('.todo-list li');
+            listElement.forEach((element) => {
+                element.querySelector(':checked') ? element.classList.remove("hidden") : element.classList.add("hidden");
+            });
+            showComleted.classList.add("active");
+            showLeft.classList.remove("active");
+            showAll.classList.remove("active");
+        })
+
     }
     saveData() {
         localStorage.setItem('todo-list', JSON.stringify(this.ListItems));
@@ -102,15 +131,15 @@ class App {
         this.ListItems[currentIndex]["checked"] = this.getCurrentStateElement(element);
         this.saveData();
     }
-
     findItemLeft() {
-        return this.ListItems.filter((element) => {
-            return element["checked"] === false;
+        return this.ListItems.filter((item) => {
+            return item["checked"] === false;
         }, []);
     }
-
     setCountItemLeft() {
         document.querySelector(".todo-count strong").innerHTML = this.findItemLeft().length;
     }
+    showListItemsLeft() {}
+    showListItemsCompleted() {}
 }
 const todos = new App();

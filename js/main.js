@@ -14,9 +14,8 @@ class App {
         const data = JSON.parse(localStorage.getItem('todo-list'));
         if (data != null) {
             data.forEach(element => {
-                this.addItemToListView(element.item, element.isCompleted);
-                this.addItemtoData(element.item, element.isCompleted);
-
+                this.addElementToListView(element.item, element.isCompleted);
+                this.addItemtoData(element.item, (element.isCompleted === true) ? "true" : "false");
             });
         }
     }
@@ -25,7 +24,7 @@ class App {
         this.ListItems.push({"item": item, "checked": isCompleted});
     }
 
-    addItemToListView(item, isCompleted) {
+    addElementToListView(item, isCompleted) {
         let todoList = document.querySelector(".todo-list");
         let todoItem = document.createElement('li');
         let divView = document.createElement('div');
@@ -48,6 +47,10 @@ class App {
         todoItem.appendChild(divView);
         todoList.appendChild(todoItem);
 
+        btnRemove.addEventListener('click', (event) => {
+            this.removeItem(event.target.closest('li'));
+            event.target.closest('li').remove();
+        });;
     }
 
     renderUI() {
@@ -56,7 +59,7 @@ class App {
             if (event.key === 'Enter') {
                 var valueInput = input.value;
                 if (valueInput.trim() != 0) {
-                    this.addItemToListView(valueInput, false);
+                    this.addElementToListView(valueInput, false);
                     this.addItemtoData(valueInput, false);
                     this.saveData();
                     document.getElementById('new-todo').value = '';
@@ -67,6 +70,15 @@ class App {
 
     saveData() {
         localStorage.setItem('todo-list', JSON.stringify(this.ListItems));
+    }
+
+    removeItem(element) {
+        this.ListItems.splice(this.getIndexOfElement(element), 1);
+        this.saveData();
+    }
+    getIndexOfElement(element) {
+        console.log(Array.from(element.closest('ul').children).indexOf(element));
+        return Array.from(element.closest('ul').children).indexOf(element);
     }
 
 }

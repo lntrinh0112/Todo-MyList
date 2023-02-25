@@ -25,6 +25,7 @@ body {
   box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
   width: 100%;
   font-size: 24px;
+  outline: none;
 }
 
 header h1 {
@@ -34,6 +35,30 @@ header h1 {
 }
 
 /* Main */
+
+.check-all {
+  opacity: 0;
+  position: absolute;
+}
+
+.check-all + label {
+  width: 60px;
+  height: 34px;
+  font-size: 0;
+  position: absolute;
+  top: -54px;
+  left: -13px;
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+}
+
+.check-all + label:before {
+  content: "❯";
+  font-size: 22px;
+  color: #e6e6e6;
+  padding: 10px 27px 10px 27px;
+}
+
 .todo-list {
   list-style: none;
 }
@@ -67,12 +92,17 @@ header h1 {
   text-align: start;
 }
 
+/* .todo-list li.active label {
+  text-decoration: line-through;
+  color: darkgray;
+} */
+
 .todo-list li .destroy:after {
   content: "x";
 }
 
 .todo-list li .destroy {
-  /* display: none; */
+  display: none;
   position: absolute;
   top: 0;
   right: 10px;
@@ -82,13 +112,17 @@ header h1 {
   margin: auto 0;
   background: #fff;
   border: none;
-  font-size: 16px;
+  font-size: 30px;
   color: #b83f45;
   cursor: pointer;
 }
 
-.todo-list li .view {
-  /* display: none; */
+.todo-list li:hover .destroy {
+  display: block;
+}
+
+.todo-list li .view label {
+  border: none;
 }
 
 .todo-list li .edit {
@@ -98,6 +132,30 @@ header h1 {
   font-size: 24px;
   line-height: 1.4rem;
   padding: 6px;
+}
+
+ul li input[type="checkbox"]:checked ~ label {
+  color: #cdcdcd;
+  text-decoration: line-through;
+}
+/* Edit */
+.todo-list li.editing {
+  border-bottom: none;
+  width: 550px;
+}
+
+.todo-list li.editing .edit {
+  display: block;
+  width: 504px;
+  padding: 15px 15px;
+  margin: 0 0 0 46px;
+  border: 1px solid #b83f45;
+  outline: none;
+  height: 100%;
+}
+
+.todo-list li.editing .view {
+  display: none;
 }
 
 .footer:before {
@@ -134,6 +192,13 @@ header h1 {
   border: 1px solid #b83f45;
 }
 
+.footer ul li a.active {
+  background-color: #b83f45;
+  color: #f6f6f6;
+}
+
 .footer ul li a:last-child {
-  display: none;
+  /* display: none; */
+  pointer-events: none;
+  opacity: 0.5;
 }

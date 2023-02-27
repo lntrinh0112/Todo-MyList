@@ -130,6 +130,7 @@ class App {
       clearCompleted.setAttribute("style", "opacity: 0.5");
       clearCompleted.classList.add("hidden");
     });
+    this.checkAll();
   }
   renderFooter() {
     const clearCompleted = document.querySelector(".ClearCompleted");
@@ -171,6 +172,36 @@ class App {
   setCountItemLeft() {
     document.querySelector(".todo-count strong").innerHTML =
       this.findItemLeft().length;
+  }
+  checkAll() {
+    var checkAll = document.getElementById("label-check-all");
+    checkAll.addEventListener("click", () => {
+      var allCheckBox = document.querySelectorAll(".view input[type=checkbox]");
+      var allChecked = Array.from(allCheckBox).every((element) => {
+        return element.checked === true;
+      });
+      if (allChecked) {
+        document.getElementById("check-all").classList.remove("active");
+        allCheckBox.forEach((element) => {
+          element.checked = false;
+        });
+        this.ListItems.forEach((item) => {
+          item["checked"] = false;
+        });
+        this.saveData();
+      } else {
+        document.getElementById("check-all").classList.add("active");
+        allCheckBox.forEach((element) => {
+          element.checked = true;
+        });
+        this.ListItems.forEach((item) => {
+          item["checked"] = true;
+        });
+        this.saveData();
+      }
+      this.setCountItemLeft();
+      this.renderFooter();
+    });
   }
 }
 const todos = new App();

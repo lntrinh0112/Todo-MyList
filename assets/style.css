@@ -39,7 +39,7 @@ header h1 {
   height: 34px;
   font-size: 0;
   position: absolute;
-  top: -54px;
+  top: 70px;
   left: -13px;
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
@@ -49,6 +49,9 @@ header h1 {
   font-size: 22px;
   color: #e6e6e6;
   padding: 10px 27px 10px 27px;
+}
+.check-all.active + label:before {
+  color: #b83f45;
 }
 .todo-list {
   list-style: none;

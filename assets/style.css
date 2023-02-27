@@ -122,23 +122,7 @@ ul li input[type="checkbox"]:checked ~ label {
 .todo-list li.hidden {
   display: none;
 }
-/* Edit */
-.todo-list li.editing {
-  border-bottom: none;
-  width: 550px;
-}
-.todo-list li.editing .edit {
-  display: block;
-  width: 504px;
-  padding: 15px 15px;
-  margin: 0 0 0 46px;
-  border: 1px solid #b83f45;
-  outline: none;
-  height: 100%;
-}
-.todo-list li.editing .view {
-  display: none;
-}
+
 .footer:before {
   content: " ";
   position: absolute;

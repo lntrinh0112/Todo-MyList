@@ -57,11 +57,19 @@ class App {
       this.renderFooter();
       this.setCountItemLeft();
     });
-    todoItemName.addEventListener("keypress", (event) => {
-      if (event.key === 13) {
-        todoItemName.contentEditable = "false";
-        this.changeItem(event.target.closest("li"));
-      }
+    todoItemName.addEventListener("click", (event) => {
+      var elementEdit = event.target.closest("li");
+      elementEdit.querySelector("label").setAttribute("style", "cursor: text");
+      todoItemName.contentEditable = true;
+      todoItemName.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+          todoItemName.contentEditable = false;
+          this.changeItemByElement(elementEdit);
+          elementEdit
+            .querySelector("label")
+            .setAttribute("style", "cursor: default");
+        }
+      });
     });
   }
   renderUI() {
@@ -158,10 +166,15 @@ class App {
   getCurrentStateElement(element) {
     return element.querySelector("input[type='checkbox']").checked;
   }
+  getCurrentContentElement(element) {
+    return element.querySelector("label").textContent;
+  }
   changeItemByElement(element) {
     let currentIndex = this.getIndexOfElement(element);
     this.ListItems[currentIndex]["checked"] =
       this.getCurrentStateElement(element);
+    this.ListItems[currentIndex]["item"] =
+      this.getCurrentContentElement(element);
     this.saveData();
   }
   findItemLeft() {

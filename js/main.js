@@ -11,7 +11,7 @@ class App {
   }
   renderData() {
     const data = JSON.parse(localStorage.getItem("todo-list"));
-    if (data.length != 0) {
+    if (data != null) {
       data.forEach((element) => {
         this.addElementToListView(element.item, element.checked);
         this.addItemtoData(element.item, element.checked);

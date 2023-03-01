@@ -64,6 +64,10 @@ header h1 {
   position: relative;
   border-bottom: 1px solid #ededed;
 }
+
+.todo-list li.hidden {
+  display: none;
+}
 .todo-list li .toggle {
   width: 20px;
   height: 20pxpx;

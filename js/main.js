@@ -51,6 +51,14 @@ class App {
       this.setCountItemLeft();
     });
     inputCheck.addEventListener("click", (event) => {
+      const showLeft = document.querySelector(".ListItemsLeft");
+      if (showLeft.classList.contains("active")) {
+        event.target.closest("li").classList.add("hidden");
+      }
+      const showCompleted = document.querySelector(".ListItemsCompleted");
+      if (showCompleted.classList.contains("active")) {
+        event.target.closest("li").classList.add("hidden");
+      }
       this.changeStateElement(event.target.closest("li"));
       this.changeItemByElement(event.target.closest("li"));
       this.saveData();
